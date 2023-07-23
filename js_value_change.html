@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./js/js_value_change.js" async defer></script>
+    <!-- <script>
+      const demo2 = document.querySelector("#demo2");
+      demo2.innerHTML = "<h1>hello</h1>";
+    </script> -->
+  </head>
+  <body>
+    <div id="demo1"></div>
+    <div id="demo2"></div>
+    <div id="demo3"></div>
+    <script>
+      const demo2 = document.querySelector("#demo2");
+      demo2.innerHTML = "<h1>hello</h1>";
+
+      const demo3 = document.querySelector("#demo3");
+      console.log(document);
+      console.log(demo3);
+      console.log(typeof demo3);
+
+      const demo3Copy = demo3;
+      console.log(demo3Copy);
+
+      const demo100 = document.querySelector("#demo100");
+      console.log("demo100", demo100);
+    </script>
+  </body>
+</html>
