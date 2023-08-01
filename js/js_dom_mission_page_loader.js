@@ -13,15 +13,43 @@
 
 let elmsArr = [];
 
-const createElm = (tagName, content) => {
-  //tagName = "h1"
-  //content = "test"
+const createElm = (tagName, content, color, width, height, size) => {
+  // tagName = "h1"
+  // content = "test"
+  // color = "green"
+  // width = 100
+  // height = 100
+  // size = 5
   let pageDiv = document.getElementById("pageDiv");
-  let newElm = document.createElement(tagName);
-  pageDiv.appendChild(newElm);
-  newElm.innerText = content;
-  elmsArr.push({ tagName: tagName, content: content });
+  let newElm = document.createElement(tagName); // create new elm
+  pageDiv.appendChild(newElm); // add new elm to html
+  newElm.innerText = content; // set content to elm
+  newElm.style.color = color; // set color
+  newElm.style.width = width + "px"; // set width and add px
+  newElm.style.height = height + "px"; // set height and add px
+  newElm.style.fontSize = size + "rem"; // set font size and add rem
+  // elmsArr.push({
+  //   tagName: tagName,
+  //   content: content,
+  //   color: color,
+  //   width: width,
+  //   height: height,
+  //   size: size,
+  // }); // save in array the new tag
+  elmsArr.push({
+    tagName,
+    content,
+    color,
+    width,
+    height,
+    size,
+  }); // save in array the new tag
   console.log("elmsArr", elmsArr);
+};
+
+const clearPage = () => {
+  let pageDiv = document.querySelector("#pageDiv");
+  pageDiv.innerHTML = ""; // remove all tags
 };
 
 const restorePage = () => {
@@ -47,9 +75,20 @@ window.addEventListener("load", () => {
     e.preventDefault(); //stop refresh
   });
   document.getElementById("submitBtn").addEventListener("click", () => {
-    let inputTag = document.getElementById("inputTag");
-    let inputContent = document.getElementById("inputContent");
-    createElm(inputTag.value, inputContent.value);
+    let inputTag = document.getElementById("inputTag"); // get elm from html
+    let inputContent = document.getElementById("inputContent"); // get elm from html
+    let inputColor = document.getElementById("inputColor"); // get elm from html
+    let inputWidth = document.getElementById("inputWidth"); // get elm from html
+    let inputHeight = document.getElementById("inputHeight"); // get elm from html
+    let inputSize = document.getElementById("inputSize"); // get elm from html
+    createElm(
+      inputTag.value,
+      inputContent.value,
+      inputColor.value,
+      inputWidth.value,
+      inputHeight.value,
+      inputSize.value
+    ); //execute the function and passing values from inputs
     //createElm("h1", "test")
   });
   document.getElementById("saveBtn").addEventListener("click", () => {
@@ -57,6 +96,9 @@ window.addEventListener("load", () => {
     //why we need to convert? to save it in localStorage
     //localStorage can save only strings
     localStorage.setItem("tags", jsonStr); //save to localStorage
+  });
+  document.getElementById("clearBtn").addEventListener("click", () => {
+    clearPage();
   });
   restorePage();
 });
